@@ -70,3 +70,13 @@ config :mariaex, json_library: SomeLibrary
     GEOMETRY/POINT        %Mariaex.Geometry.Point{coordinates: {1.0, -1.0}, srid: 42}
     GEOMETRY/LINESTRING   %Mariaex.Geometry.LineString{coordinates: [{0.0, 0.0}, {10.0, 10.0}, {20.0, 25.0}, {50.0, 60.0}], srid: 0}
     GEOMETRY/POLYGON      %Mariaex.Geometry.Polygon{coordinates: [[{0.0, 0.0}, {10.0, 0.0}, {10.0, 10.0}, {0.0, 10.0}, {0.0, 0.0}], [{5.0, 5.0}, {7.0, 5.0}, {7.0, 7.0}, {5.0, 7.0}, {5.0, 5.0}]], srid: 0}
+
+## Note about connecting over SSL in Erlang 20
+
+If you are getting an error after upgrading from Erlang 19 to 20+ when connecting using tlsv1.2 you may need to switch to tlsv1.1. Ex:
+```
+ssl_opts: [
+  cacertfile: "path/to/your_cert.pem",
+  versions: [:'tlsv1.1']
+]
+```
